@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ public class CrimeFragment extends Fragment{
     // Chapter 8
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+    // Challenge 8
+    private DateFormat mDateFormat;
 
     @Override
     public void onCreate(Bundle saveInstanceState) {
@@ -51,7 +54,8 @@ public class CrimeFragment extends Fragment{
 
         // Chapter 8
         mDateButton = (Button)v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
+        mDateFormat = new DateFormat();
+        mDateButton.setText(mDateFormat.format("E, M dd, yyyy", mCrime.getDate()));
         mDateButton.setEnabled(false);
 
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
