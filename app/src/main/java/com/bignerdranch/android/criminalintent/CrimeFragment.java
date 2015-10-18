@@ -32,8 +32,6 @@ public class CrimeFragment extends Fragment{
     // Chapter 8
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
-    // Challenge 8
-    private DateFormat mDateFormat;
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -76,7 +74,6 @@ public class CrimeFragment extends Fragment{
             }
         });
 
-        // Challenge 8
         mDateButton = (Button)v.findViewById(R.id.crime_date);
         updateDate();
         mDateButton.setOnClickListener(new View.OnClickListener() {
