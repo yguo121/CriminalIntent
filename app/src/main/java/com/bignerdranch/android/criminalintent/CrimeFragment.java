@@ -9,6 +9,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,12 +30,12 @@ public class CrimeFragment extends Fragment{
     private static final String DIALOG_TIME = "DialogTime"; // Chapter 12 Challenge 1
 
     private static final int REQUEST_DATE = 0;
-    private static final int REQUEST_TIME = 1;              // Chapter 12 Challenge 1
+    private static final int REQUEST_TIME = 1;              // Challenge 12-1
 
     private Crime mCrime;
     private EditText mTitleField;                           // Chapter 8
     private Button mDateButton;
-    private Button mTimeButton;                             // Chapter 12 Challenge 1
+    private Button mTimeButton;                             // Challenge 12-1
     private CheckBox mSolvedCheckBox;
 
     public static CrimeFragment newInstance(UUID crimeId) {
@@ -47,9 +50,32 @@ public class CrimeFragment extends Fragment{
     @Override
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-
+        setHasOptionsMenu(true);            // Challenge 13-1
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+    }
+
+    // Challenge 13-1
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_crime, menu);
+    }
+
+    // Challenge 13-1
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_crime:
+                CrimeLab.get(getActivity()).deleteCrime(mCrime);
+                Intent intent = new Intent(getActivity(), CrimeListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
