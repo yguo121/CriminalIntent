@@ -55,6 +55,13 @@ public class CrimeFragment extends Fragment{
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
+    }
+
     // Challenge 13-1
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
