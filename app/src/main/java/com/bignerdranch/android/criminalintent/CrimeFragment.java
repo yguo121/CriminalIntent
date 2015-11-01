@@ -33,9 +33,10 @@ public class CrimeFragment extends Fragment{
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime"; // Chapter 12 Challenge 1
 
+    // Different values for each request
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_TIME = 1;              // Challenge 12-1
-    private static final int REQUEST_CONTACT = 1;           // Chapter 15
+    private static final int REQUEST_CONTACT = 2;           // Chapter 15
 
     private Crime mCrime;
     private EditText mTitleField;                           // Chapter 8
